@@ -10,16 +10,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Head01 Flutter layout',
+      title: 'H01 Flutter layout Row & Column',
       home: Scaffold(
-        appBar: AppBar(title: const Text('Head02 Flutter layout')),
-        body: const Center(
-          child: Text(
-            'Hello World Phatarisa',
-            style: TextStyle(fontSize: 32, color: Colors.black54),
-          ),
-        ),
+        appBar: AppBar(title: Text('H02 Fluuter layout Row')),
+        body: Center(child: buildRow()),
       ),
     );
   }
+
+  Widget buildRow() => (Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    Image.asset('assets/images/pic1.jpg'),
+    Image.asset('assets/images/pic2.jpg'),
+    Image.asset('assets/images/pic3.jpg'),
+  ],));
 }
