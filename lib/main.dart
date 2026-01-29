@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
   }
 
   Widget buildRow() => (Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  children: [
-    Image.asset('assets/images/pic1.jpg'),
-    Image.asset('assets/images/pic2.jpg'),
-    Image.asset('assets/images/pic3.jpg'),
+  children: [ //Expanded widget to make images responsive
+    Expanded(child: Image.asset('assets/images/pic1.jpg')),
+    Expanded(child: Image.asset('assets/images/pic2.jpg')),
+    Expanded(child: Image.asset('assets/images/pic3.jpg')),
   ],));
 }
