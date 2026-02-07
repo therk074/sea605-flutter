@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,38 +10,50 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Scaffold(body: MyCustomForm()));
+    return MaterialApp(home: Scaffold(body: MyCustomForm()));
   }
 }
 
-class MyCustomForm extends StatelessWidget {
+class MyCustomForm extends StatefulWidget {
   const MyCustomForm({super.key});
 
   @override
+  State<MyCustomForm> createState()=> _MyCustomFormState();
+}
+
+class _MyCustomFormState extends State<MyCustomForm> {
+  final _formkey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        //ใส่ Widget ทั้งอันโดยไม่ได้ระบุอะไร specific
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Enter a search text',
-            ),
+    return Form(
+      key:_formkey,
+      child: Column(
+        crossAxisAlignment:CrossAxisAlignment.start,
+        children: [
+          TextFormField(
+            keyboardType:TextInputType.number,
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              LengthLimitingTextInputFormatter(11)
+            ],
+            validator: (value) {
+            if(value==null||value.isEmpty){
+              return 'Please enter Something';
+            }
+            if(value.length != 11){
+              return 'Please Enter valid Student ID';
+            }
+            return null;
+          }
           ),
-        ), //สมมาตรทั้ง2ด้าน
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: TextField(
-            decoration: InputDecoration(
-              border: UnderlineInputBorder(),
-              labelText: 'Enter your name',
-            ),
-          ),
-        ),
-      ],
+          Padding(padding:EdgeInsets.symmetric(vertical:16),
+          child:ElevatedButton(onPressed:(){
+            if(_formkey.currentState!.validate()){
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text('Processing data')));
+            }
+          },child:Text('Submit')))
+        ],
+      ),
     );
   }
-}
+} 
