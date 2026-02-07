@@ -18,7 +18,7 @@ class MyCustomForm extends StatefulWidget {
   const MyCustomForm({super.key});
 
   @override
-  State<MyCustomForm> createState()=> _MyCustomFormState();
+  State<MyCustomForm> createState() => _MyCustomFormState();
 }
 
 class _MyCustomFormState extends State<MyCustomForm> {
@@ -26,34 +26,37 @@ class _MyCustomFormState extends State<MyCustomForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key:_formkey,
+      key: _formkey,
       child: Column(
-        crossAxisAlignment:CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
-            keyboardType:TextInputType.number,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-              LengthLimitingTextInputFormatter(11)
-            ],
             validator: (value) {
-            if(value==null||value.isEmpty){
-              return 'Please enter Something';
-            }
-            if(value.length != 11){
-              return 'Please Enter valid Student ID';
-            }
-            return null;
-          }
+              if (value == null || value.isEmpty) {
+                return 'Please enter Something';
+              }
+              final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+              if (emailRegex.hasMatch(value)) {
+                return 'Please enter valid Email address';
+              }
+              return null;
+            },
           ),
-          Padding(padding:EdgeInsets.symmetric(vertical:16),
-          child:ElevatedButton(onPressed:(){
-            if(_formkey.currentState!.validate()){
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text('Processing data')));
-            }
-          },child:Text('Submit')))
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 16),
+            child: ElevatedButton(
+              onPressed: () {
+                if (_formkey.currentState!.validate()) {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('Processing data')));
+                }
+              },
+              child: Text('Submit'),
+            ),
+          ),
         ],
       ),
     );
   }
-} 
+}
