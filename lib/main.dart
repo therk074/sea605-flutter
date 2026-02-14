@@ -1,35 +1,47 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const TabBarDemo());
+  runApp(const MaterialApp(title: 'Navigation Basic', home: FirstRoute()));
 }
 
-class TabBarDemo extends StatelessWidget {
-  const TabBarDemo({super.key});
+class FirstRoute extends StatelessWidget {
+  const FirstRoute({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            bottom: const TabBar(
-              tabs: [
-                Tab(icon: Icon(Icons.directions_car_outlined)),
-                Tab(icon: Icon(Icons.directions_transit_outlined)),
-                Tab(icon: Icon(Icons.directions_bike_outlined)),
-              ],
-            ),
-            title: Text('Tabs Demo'),
-          ),
-          body: TabBarView(
-            children: [
-              Icon(Icons.directions_car),
-              Icon(Icons.directions_car),
-              Icon(Icons.directions_car),
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(title: Text('First Page')),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute<void>(builder: (context) => SecondRoute()),
+            );
+          },
+          child: Text('Open 2nd page'),
+        ),
+      ),
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  const SecondRoute({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Second Page')),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute<void>(builder: (context) => FirstRoute()),
+            );
+          },
+          child: Text('Open 1st page'),
         ),
       ),
     );
