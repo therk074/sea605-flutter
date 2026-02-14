@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(title: 'Navigation Basic', home: FirstRoute()));
+  runApp(
+    MaterialApp(
+      title: 'Navigation Basic',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => FirstRoute(),
+        '/second': (context) => SecondRoute(),
+      },
+    ),
+  );
 }
 
 class FirstRoute extends StatelessWidget {
@@ -14,10 +23,7 @@ class FirstRoute extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<void>(builder: (context) => SecondRoute()),
-            );
+            Navigator.pushNamed(context, '/second');
           },
           child: Text('Open 2nd page'),
         ),
@@ -36,10 +42,7 @@ class SecondRoute extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<void>(builder: (context) => FirstRoute()),
-            );
+            Navigator.pop(context);
           },
           child: Text('Open 1st page'),
         ),
