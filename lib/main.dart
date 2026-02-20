@@ -6,6 +6,8 @@ void main() {
     home: Scaffold(
       appBar:AppBar(
         title: const Text("My App"),
+        backgroundColor: Colors.blue,
+        centerTitle: true,
       )
     ),
   ));
