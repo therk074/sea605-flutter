@@ -9,7 +9,12 @@ void main() {
         backgroundColor: Colors.blue,
         centerTitle: true,
       ),
-      body: const Home(),
+      body: Column(
+        children: [
+          const Home(),
+          const Home()
+        ],
+      ),
     ),
   ));
 }
