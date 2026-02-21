@@ -21,8 +21,9 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.blueGrey,
-      width: 300,
-      height: 300,
+      // margin: EdgeInsets.all(10),
+      // margin: const EdgeInsets.fromLTRB(10, 1, 9, 30),
+      margin: EdgeInsets.symmetric(horizontal: 20,vertical: 30),
     );
   }
 }
