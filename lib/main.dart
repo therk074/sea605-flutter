@@ -9,12 +9,7 @@ void main() {
         backgroundColor: Colors.blue,
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          const Home(),
-          const Home()
-        ],
-      ),
+      body: const Home(),
     ),
   ));
 }
@@ -24,6 +19,10 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("Hello Flutter Content");
+    return Container(
+      color: Colors.blueGrey,
+      width: 300,
+      height: 300,
+    );
   }
 }
