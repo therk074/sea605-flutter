@@ -22,16 +22,12 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text('Title'),
-          SizedBox(height: 8),
-          Text('Subtitle'),
-          ElevatedButton(onPressed: null, child: Text('Button')),
-        ],
+      color: Colors.blueGrey,
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30), //กล่องกับข้างนอก
+      padding: EdgeInsets.all(20), //กล่องกับตัวwidget childข้างใน
+      child: const Text(
+        "Test",
+        style: TextStyle(fontSize: 30, letterSpacing: 3),
       ),
     );
   }
