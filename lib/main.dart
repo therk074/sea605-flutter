@@ -8,7 +8,8 @@ void main() {
         title: const Text("My App"),
         backgroundColor: Colors.blue,
         centerTitle: true,
-      )
+      ),
+      body: const Text("Body Flutter"),
     ),
   ));
 }
