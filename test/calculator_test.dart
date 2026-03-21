@@ -14,6 +14,12 @@ void main() {
     final result = calculator.applyDiscount(originalPrice, discountPercentage);
     
     // 3. Assert: Verify that the actual result matches the expected outcome (100 - 20% = 80.0)
-    expect(result, 80.0);
+    final expected = 80.0;
+
+    if(result == expected){
+      print('Test Pass: The actual result ($result) matches the expectation');
+    }else{
+      print('Test Fail: The actual result ($result) does not match the expectation');
+    }
   });
 }

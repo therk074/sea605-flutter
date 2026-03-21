@@ -1,3 +1,5 @@
+name: flutter_application_1
+
 environment:
   sdk: '^3.10.0'
 
@@ -6,12 +8,13 @@ dependencies:
     sdk: flutter
   provider: ^6.0.0 # Core state management library to be tested in Part 2
   http: ^1.1.0 # Used for network requests, which will be mocked in Part 3
+  cloud_firestore: ^5.6.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter # The fundamental Flutter testing framework
   mockito: ^5.4.2 # Library for generating mock objects (e.g., Mocking HTTP Client)
   build_runner: ^2.4.6 # Tool to automatically generate mock classes behind the scenes
-  fake_cloud_firestore: ^2.5.3 # Provides an in-memory Firestore instance for testing
+  fake_cloud_firestore: 3.1.0 # Provides an in-memory Firestore instance for testing
   firebase_core_platform_interface: ^5.0.0 # Under-the-hood requirement for Firebase fakes
   plugin_platform_interface: ^2.1.8 # Under-the-hood requirement for Firebase fakes
