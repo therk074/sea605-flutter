@@ -15,4 +15,15 @@ class CartProvider extends ChangeNotifier {
     // Crucial step: Broadcasts the state change to all listening UI widgets
     notifyListeners(); 
   }
+
+  // Method to remove an item while enforcing a lower bound of zero
+  void removeItem() {
+    // Logical constraint: prevent item count from dropping below zero
+    if (_itemCount > 0) {
+      _itemCount--;
+    }
+
+    // Broadcast the state change to all listening UI widgets
+    notifyListeners();
+  }
 }

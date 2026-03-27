@@ -19,4 +19,10 @@ class UserService {
     // Returns null if the user document is not found
     return null;
   }
+
+  // Method to persist user data to the Firestore database
+  Future<void> saveUserData(String userId, Map<String, dynamic> data) async {
+    // Writes (or overwrites) the document at the given userId with the provided data payload
+    await firestore.collection('users').doc(userId).set(data);
+  }
 }

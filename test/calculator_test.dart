@@ -22,4 +22,34 @@ void main() {
       print('Test Fail: The actual result ($result) does not match the expectation');
     }
   });
+
+  // Test Block: Error Handling (Edge Cases)
+  group('applyDiscount error handling (Edge Cases)', () {
+    // 1. Arrange: Initialize the object under test
+    final calculator = Calculator();
+
+    test('should throw ArgumentError when a negative price is provided', () {
+      // 2. Act & Assert: A negative price must trigger an ArgumentError
+      expect(
+        () => calculator.applyDiscount(-50.0, 10.0),
+        throwsArgumentError,
+      );
+    });
+
+    test('should throw ArgumentError when a negative discount is provided', () {
+      // 2. Act & Assert: A negative discount must trigger an ArgumentError
+      expect(
+        () => calculator.applyDiscount(100.0, -10.0),
+        throwsArgumentError,
+      );
+    });
+
+    test('should throw ArgumentError when both price and discount are negative', () {
+      // 2. Act & Assert: Both values being negative must trigger an ArgumentError
+      expect(
+        () => calculator.applyDiscount(-100.0, -10.0),
+        throwsArgumentError,
+      );
+    });
+  });
 }

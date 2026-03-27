@@ -36,4 +36,25 @@ void main() {
     // 3. Assert
     expect(userData, isNull);
   });
+
+  test('saveUserData should successfully commit the payload to the mocked database', () async {
+    // 1. Arrange: Instantiate Fake Firestore and UserService with no pre-seeded data
+    final fakeFirestore = FakeFirebaseFirestore();
+    final userService = UserService(fakeFirestore);
+    final String targetUserId = 'user456';
+    final Map<String, dynamic> payload = {
+      'name': 'VV_std VI',
+      'email': 'vvlabcode2@gmail.com',
+    };
+
+    // 2. Act: Invoke saveUserData to persist the payload to the mocked database
+    await userService.saveUserData(targetUserId, payload);
+
+    // 3. Assert: Directly query Fake Firestore to confirm the document was committed
+    final snapshot = await fakeFirestore.collection('users').doc(targetUserId).get();
+
+    expect(snapshot.exists, isTrue);
+    expect(snapshot.data()?['name'], 'VV_std VI');
+    expect(snapshot.data()?['email'], 'vvlabcode2@gmail.com');
+  });
 }
